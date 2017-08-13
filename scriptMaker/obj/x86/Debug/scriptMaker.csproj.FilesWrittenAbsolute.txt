@@ -1,0 +1,5 @@
+/Users/cyx/Projects/scriptMaker/scriptMaker/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/cyx/Projects/scriptMaker/scriptMaker/bin/Debug/scriptMaker.exe.mdb
+/Users/cyx/Projects/scriptMaker/scriptMaker/bin/Debug/scriptMaker.exe
+/Users/cyx/Projects/scriptMaker/scriptMaker/obj/x86/Debug/scriptMaker.exe
+/Users/cyx/Projects/scriptMaker/scriptMaker/obj/x86/Debug/scriptMaker.exe.mdb

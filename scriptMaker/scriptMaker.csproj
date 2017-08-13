@@ -35,6 +35,17 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="lexer\Token.cs" />
+    <Compile Include="lexer\NumberToken.cs" />
+    <Compile Include="lexer\IdToken.cs" />
+    <Compile Include="lexer\StrToken.cs" />
+    <Compile Include="lexer\Lexer.cs" />
+    <Compile Include="ParseException.cs" />
+    <Compile Include="tools\LineNumberReader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="lexer\" />
+    <Folder Include="tools\" />
+  </ItemGroup>
 </Project>
