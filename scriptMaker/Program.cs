@@ -3,6 +3,14 @@ using System.Text.RegularExpressions;
 
 namespace scriptMaker
 {
+    public class Test
+    {
+        public virtual void GetM()
+        {
+
+        }
+    }
+
 	class MainClass
 	{
 
@@ -19,8 +27,13 @@ namespace scriptMaker
 			Token token = lexer.read ();
 
 			Console.WriteLine ("Hello World!");
+            BasicParser bp = new BasicParser();
+            while (l.peek(0) != Token.EOF)
+            {
+                ASTree ast = bp.parse(l);
+                System.out.println("=> " + ast.toString());
+            }
 
-
-		}
+        }
 	}
 }

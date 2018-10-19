@@ -1,0 +1,5 @@
+D:\Projects\scriptMaker\scriptMaker\obj\x86\Debug\scriptMaker.exe
+D:\Projects\scriptMaker\scriptMaker\bin\Debug\scriptMaker.exe
+D:\Projects\scriptMaker\scriptMaker\bin\Debug\scriptMaker.pdb
+D:\Projects\scriptMaker\scriptMaker\obj\x86\Debug\scriptMaker.csprojResolveAssemblyReference.cache
+D:\Projects\scriptMaker\scriptMaker\obj\x86\Debug\scriptMaker.pdb
