@@ -17,8 +17,9 @@ namespace scriptMaker
 		{
 			return lineNumber;
 		}
-
-		public virtual bool isId()
+        
+        public virtual  bool isIdentifier() { return false; }
+        public virtual bool isId()
 		{
 			return false;
 		}

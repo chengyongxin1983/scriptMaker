@@ -20,6 +20,9 @@ namespace scriptMaker
 		{
 			return value;
 		}
-	}
+
+
+        public override bool isIdentifier() { return true; }
+    }
 }
 
