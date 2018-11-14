@@ -1,4 +1,6 @@
-﻿using System;
+﻿using scriptMaker.ast;
+using scriptMaker.parser;
+using System;
 using System.Text.RegularExpressions;
 
 namespace scriptMaker
@@ -14,10 +16,12 @@ namespace scriptMaker
 	class MainClass
 	{
 
-		private static 
-		string target = "if (i==\"DSAFG\")";
+		private static
+        //string target = "if (i==\"DSAFG\")";
 
-		public static void Main (string[] args)
+        string target = "(1+2)";
+
+        public static void Main (string[] args)
 		{
 			string[] strs = new string[1];
 			strs [0] = target;
@@ -28,10 +32,10 @@ namespace scriptMaker
 
 			Console.WriteLine ("Hello World!");
             BasicParser bp = new BasicParser();
-            while (l.peek(0) != Token.EOF)
+            while (lexer.peek(0) != Token.EOF)
             {
-                ASTree ast = bp.parse(l);
-                System.out.println("=> " + ast.toString());
+                ASTree ast = bp.parse(lexer);
+                System.Console.Write("=> " + ast.ToString());
             }
 
         }

@@ -2,24 +2,26 @@
 
 namespace scriptMaker
 {
-	public class IdToken : Token
-	{
-		private string value;
-		public IdToken (int line, string v):base(line)
-		{
-			value = v;
-		}
+    public class StrToken : Token
+    {
+        private string value;
+        public StrToken(int line, string v) : base(line)
+        {
+            value = v;
+        }
 
 
-		public override bool isId()
-		{
-			return true;
-		}
+        public override bool isString()
+        {
+            return true;
+        }
 
-		public override string getText()
-		{
-			return value;
-		}
-	}
+        public override string getText()
+        {
+            return value;
+        }
+
+
+    }
 }
 

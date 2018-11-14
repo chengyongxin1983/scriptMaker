@@ -3,43 +3,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using scriptMaker.ast;
+using static scriptMaker.parser.Parser;
 
 namespace scriptMaker.parser
 {
     public class BasicParser
     {
         HashSet<String> reserved = new HashSet<String>();
-        Operators operators = new Operators();
-        Parser expr0 = rule();
-        Parser primary = rule(PrimaryExpr.class)
-        .or(rule().sep("(").ast(expr0).sep(")"),
-            rule().number(NumberLiteral.class),
-            rule().identifier(Name.class, reserved),
-            rule().string(StringLiteral.class));
-    Parser factor = rule().or(rule(NegativeExpr.class).sep("-").ast(primary),
-                              primary);                               
-    Parser expr = expr0.expression(BinaryExpr.class, factor, operators);
+        Parser.Operators operators = new Parser.Operators();
+        Parser primary = null;
+        Parser factor = null;
+        Parser expr = null;
 
-    Parser statement0 = rule();
-        Parser block = rule(BlockStmnt.class)
-        .sep("{").option(statement0)
-            .repeat(rule().sep(";", Token.EOL).option(statement0))
-        .sep("}");
-        Parser simple = rule(PrimaryExpr.class).ast(expr);
-        Parser statement = statement0.or(
-                rule(IfStmnt.class).sep("if").ast(expr).ast(block)
-                                   .option(rule().sep("else").ast(block)),
-            rule(WhileStmnt.class).sep("while").ast(expr).ast(block),
-            simple);
-
-    Parser program = rule().or(statement, rule(NullStmnt.class))
-                           .sep(";", Token.EOL);
+        Parser statement0 = null;
+        Parser block = null;
+        Parser simple = null;
+        Parser statement = null;
+        Parser program = null;
 
         public BasicParser()
         {
-            reserved.add(";");
-            reserved.add("}");
-            reserved.add(Token.EOL);
+            Parser expr0 = Parser.rule();
+            primary = Parser.rule(typeof(PrimaryExpr))
+              .or(new Parser[] { Parser.rule().sep("(").ast(expr0).sep(")"),
+                  Parser.rule().number(typeof(NumberLiteral)),
+                  Parser.rule().identifier(typeof(Name), reserved),
+                  Parser.rule().stringToken(typeof(StringLiteral)) });
+        
+            factor = Parser.rule().or(Parser.rule(typeof(NegativeExpr)).sep("-").ast(primary),
+                              primary);                               
+
+            expr = expr0.expression(typeof(BinaryExpr), factor, operators);
+            statement0 = Parser.rule();
+            block = Parser.rule(typeof(BlockStmnt)).sep("{").option(statement0).repeat(Parser.rule().sep(";", Token.EOL).option(statement0)).sep("}");
+
+            simple = Parser.rule(typeof(PrimaryExpr)).ast(expr);
+            statement = statement0.or(new Parser[] { Parser.rule(typeof(IfStmnt)).sep("if").ast(expr).ast(block).option(Parser.rule().sep("else").ast(block)),
+                Parser.rule(typeof(WhileStmnt)).sep("while").ast(expr).ast(block),      simple });
+
+            program = Parser.rule().or(statement, Parser.rule(typeof(NullStmnt)))
+                           .sep(";", Token.EOL);
+
+            reserved.Add(";");
+            reserved.Add("}");
+            reserved.Add(Token.EOL);
 
             operators.add("=", 1, Operators.RIGHT);
             operators.add("==", 2, Operators.LEFT);
@@ -51,9 +59,9 @@ namespace scriptMaker.parser
             operators.add("/", 4, Operators.LEFT);
             operators.add("%", 4, Operators.LEFT);
         }
-        public ASTree parse(Lexer lexer) throws ParseException
+        public ASTree parse(Lexer lexer) 
         {
-        return program.parse(lexer);
+            return program.parse(lexer);
         }
     }
 

@@ -281,12 +281,17 @@ namespace scriptMaker.parser
 
         public static Factory get(System.Type clazz, System.Type argType)
             {
+                if (clazz == null)
+                {
+                    return null;
+                }
                 Factory result = null;
                 MethodInfo factoryFun = clazz.GetMethod(factoryName);
 
                 if (factoryFun == null)
                 {
                     Type[] types = new Type[1];
+                    types[0] = argType;
                     ConstructorInfo constructorFun = clazz.GetConstructor(types);
 
                     if (constructorFun != null)
@@ -431,15 +436,25 @@ namespace scriptMaker.parser
             elements.Add(new StrToken(clazz));
             return this;
         }
-        public Parser token(String[] pat)
-        {
+        public Parser token(string[] pat)
+       {
             elements.Add(new Leaf(pat));
             return this;
         }
-        public Parser sep(String[] pat)
+        public Parser sep(string[] pat)
         {
             elements.Add(new Skip(pat));
             return this;
+        }
+
+        public Parser sep(string pat)
+        {
+            return sep(new string[] { pat });
+        }
+
+        public Parser sep(string p1, string p2)
+        {
+            return sep(new string[] { p1, p2 });
         }
         public Parser ast(Parser p)
         {
@@ -452,6 +467,10 @@ namespace scriptMaker.parser
             return this;
         }
 
+        public Parser or(Parser p1, Parser p2)
+        {
+            return or(new Parser[] { p1, p2 });
+        }
         public Parser maybe(Parser p)
         {
             Parser p2 = new Parser(p);

@@ -36,6 +36,16 @@
     <Compile Include="ast\ASTLeaf.cs" />
     <Compile Include="ast\ASTList.cs" />
     <Compile Include="ast\ASTree.cs" />
+    <Compile Include="ast\BinaryExpr.cs" />
+    <Compile Include="ast\BlockStmnt.cs" />
+    <Compile Include="ast\IfStmnt.cs" />
+    <Compile Include="ast\Name.cs" />
+    <Compile Include="ast\NegativeExpr.cs" />
+    <Compile Include="ast\NullStmnt.cs" />
+    <Compile Include="ast\NumberLiteral.cs" />
+    <Compile Include="ast\PrimaryExpr.cs" />
+    <Compile Include="ast\StringLiteral.cs" />
+    <Compile Include="ast\WhileStmnt.cs" />
     <Compile Include="parser\BasicParser.cs" />
     <Compile Include="parser\ParseException.cs" />
     <Compile Include="parser\Parser.cs" />
