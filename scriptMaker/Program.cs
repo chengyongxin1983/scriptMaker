@@ -19,7 +19,7 @@ namespace scriptMaker
 		private static
         //string target = "if (i==\"DSAFG\")";
 
-        string target = "(1+2)";
+        string target = "(1+2);";
 
         public static void Main (string[] args)
 		{
@@ -28,7 +28,7 @@ namespace scriptMaker
 			LineNumberReader reader = new LineNumberReader (strs);
 
 			Lexer lexer = new Lexer (reader);
-			Token token = lexer.read ();
+			//Token token = lexer.read ();
 
 			Console.WriteLine ("Hello World!");
             BasicParser bp = new BasicParser();

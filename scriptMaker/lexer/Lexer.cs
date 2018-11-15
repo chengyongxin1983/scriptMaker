@@ -33,7 +33,6 @@ namespace scriptMaker
 			Token result = null;
 			if (fillQueue(i)) {
 				result = queue [0];
-				queue.RemoveAt (0);
 			}
 			else
 				result = Token.EOF;

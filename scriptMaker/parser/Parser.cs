@@ -366,8 +366,7 @@ namespace scriptMaker.parser
             foreach (Element e in elements)
                 e.parse(lexer, results);
 
-            factory.make(results);
-            return null;
+            return factory.make(results);
         }
         protected bool match(Lexer lexer) 
         {
