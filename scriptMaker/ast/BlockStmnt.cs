@@ -10,6 +10,17 @@ namespace scriptMaker.parser
 
     public class BlockStmnt : ASTList
     {
-        public BlockStmnt(List<ASTree> c):base(c) {  }
+        public BlockStmnt(List<ASTree> c) : base(c) { }
+
+        public override Object eval(Environment env)
+        {
+            Object result = 0;
+            foreach (ASTree t in _children)
+            {
+                if (!(t is NullStmnt))
+                    result = ((ASTree)t).eval(env);
+            }
+            return result;
+        }
     }
 }

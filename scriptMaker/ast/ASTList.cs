@@ -37,6 +37,11 @@ namespace scriptMaker.ast
             }
             return null;
         }
+
+        public override object eval(Environment env)
+        {
+            throw new ParseException("cannot eval: " + toString());
+        }
     }
 
 }

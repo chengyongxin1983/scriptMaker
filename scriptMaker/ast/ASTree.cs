@@ -14,7 +14,7 @@ namespace scriptMaker.ast
         public abstract String location();
 
         public abstract IEnumerator<ASTree> children();
-        
+        public abstract Object eval(Environment env);
         
     }
 

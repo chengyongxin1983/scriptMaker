@@ -12,5 +12,7 @@ namespace scriptMaker.parser
     {
         public StringLiteral(Token t):base(t) { }
         public String value() { return token().getText(); }
+
+        public override object eval(Environment e) { return value(); }
     }
 }

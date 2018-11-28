@@ -16,12 +16,12 @@ namespace scriptMaker
 			return true;
 		}
 
-		public int getNumber()
+		public override int getNumber()
 		{
 			return value;
 		}
 
-		public string getText()
+		public override string getText()
 		{
 			return value.ToString();
 		}

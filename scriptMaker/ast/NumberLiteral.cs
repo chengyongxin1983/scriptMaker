@@ -8,8 +8,12 @@ using scriptMaker.ast;
 namespace scriptMaker.parser
 {
 
-    public class NumberLiteral : ASTLeaf {
-    public NumberLiteral(Token t):base(t) {  }
-    public int value() { return token().getNumber(); }
-}
+    public class NumberLiteral : ASTLeaf
+    {
+        public NumberLiteral(Token t) : base(t) { }
+        public int value() { return token().getNumber(); }
+
+        public override object eval(Environment e) { return value(); }
+    }
+    
 }

@@ -38,6 +38,8 @@
     <Compile Include="ast\ASTree.cs" />
     <Compile Include="ast\BinaryExpr.cs" />
     <Compile Include="ast\BlockStmnt.cs" />
+    <Compile Include="ast\eval\BasicEnv.cs" />
+    <Compile Include="ast\eval\Environment.cs" />
     <Compile Include="ast\IfStmnt.cs" />
     <Compile Include="ast\Name.cs" />
     <Compile Include="ast\NegativeExpr.cs" />

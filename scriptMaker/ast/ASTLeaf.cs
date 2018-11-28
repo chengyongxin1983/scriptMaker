@@ -18,6 +18,11 @@ namespace scriptMaker.ast
         public String toString() { return _token.getText(); }
         public override String location() { return "at line " + _token.getLineNumber(); }
         public Token token() { return _token; }
+
+        public override object eval(Environment env)
+        {
+            throw new ParseException("cannot eval: " + toString());
+        }
     }
 
 }

@@ -12,5 +12,15 @@ namespace scriptMaker.parser
     {
         public Name(Token t):base(t) { }
         public String name() { return token().getText(); }
+
+
+        public override object eval(Environment env)
+        {
+            Object value = env.get(name());
+            if (value == null)
+                throw new ParseException("undefined name: " + name());
+            else
+                return value;
+        }
     }
 }

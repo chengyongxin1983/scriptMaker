@@ -19,7 +19,7 @@ namespace scriptMaker
 		private static
         //string target = "if (i==\"DSAFG\")";
 
-        string target = "(1+2);";
+        string target = "3*2+5;";
 
         public static void Main (string[] args)
 		{
@@ -36,6 +36,11 @@ namespace scriptMaker
             {
                 ASTree ast = bp.parse(lexer);
                 System.Console.Write("=> " + ast.ToString());
+
+                for (int i = 0; i < ast.numChildren(); ++i)
+                {
+                    int k = (int)ast.child(i).eval(new BasicEnv());
+                }
             }
 
         }

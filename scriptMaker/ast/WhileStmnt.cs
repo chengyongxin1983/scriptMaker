@@ -16,5 +16,18 @@ namespace scriptMaker.ast
         {
             return "(while " + condition() + " " + body() + ")";
         }
+
+        public override Object eval(Environment env)
+        {
+            Object result = 0;
+            for (;;)
+            {
+                Object c = ((ASTree)condition()).eval(env);
+                if (c is System.Int32 && ((System.Int32)c) == 0)
+                    return result;
+                else
+                    result = ((ASTree)body()).eval(env);
+        }
     }
+}
 }
