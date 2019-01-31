@@ -19,7 +19,9 @@ namespace scriptMaker
 		private static
         //string target = "if (i==\"DSAFG\")";
 
-        string target = "3*2+5;";
+        string target = "def fun(i)"
+            +"{ if i == 0    };" 
+            +"k=fun(5);";
 
         public static void Main (string[] args)
 		{
@@ -31,15 +33,15 @@ namespace scriptMaker
 			//Token token = lexer.read ();
 
 			Console.WriteLine ("Hello World!");
-            BasicParser bp = new BasicParser();
+            FuncParser bp = new FuncParser();
+
+            NestedEnv env = new NestedEnv();
             while (lexer.peek(0) != Token.EOF)
             {
                 ASTree ast = bp.parse(lexer);
-                System.Console.Write("=> " + ast.ToString());
-
-                for (int i = 0; i < ast.numChildren(); ++i)
-                {
-                    int k = (int)ast.child(i).eval(new BasicEnv());
+                if (!(ast is NullStmnt)) {
+                    object r = ast.eval(env);
+                    
                 }
             }
 

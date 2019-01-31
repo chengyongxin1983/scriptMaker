@@ -10,17 +10,17 @@ namespace scriptMaker.parser
 {
     public class BasicParser
     {
-        HashSet<String> reserved = new HashSet<String>();
-        Parser.Operators operators = new Parser.Operators();
-        Parser primary = null;
-        Parser factor = null;
-        Parser expr = null;
+        protected HashSet<String> reserved = new HashSet<String>();
+        protected Parser.Operators operators = new Parser.Operators();
+        protected Parser primary = null;
+        protected Parser factor = null;
+        protected Parser expr = null;
 
-        Parser statement0 = null;
-        Parser block = null;
-        Parser simple = null;
-        Parser statement = null;
-        Parser program = null;
+        protected Parser statement0 = null;
+        protected Parser block = null;
+        protected Parser simple = null;
+        protected Parser statement = null;
+        protected Parser program = null;
 
         public BasicParser()
         {

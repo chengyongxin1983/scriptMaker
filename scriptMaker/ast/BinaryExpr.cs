@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using scriptMaker.ast;
 
-namespace scriptMaker.parser
+namespace scriptMaker.ast
 {
     public class BinaryExpr : ASTList
     {
@@ -77,7 +77,7 @@ namespace scriptMaker.parser
             string op = GetOperator();
             if (op == "=")
             {
-                computeAssign(env, right().eval(env));
+                return computeAssign(env, right().eval(env));
             }
 
             object leftObj = left().eval(env);

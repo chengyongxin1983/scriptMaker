@@ -33,22 +33,29 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ast\Arguments.cs" />
     <Compile Include="ast\ASTLeaf.cs" />
     <Compile Include="ast\ASTList.cs" />
     <Compile Include="ast\ASTree.cs" />
     <Compile Include="ast\BinaryExpr.cs" />
     <Compile Include="ast\BlockStmnt.cs" />
+    <Compile Include="ast\DefStmnt.cs" />
     <Compile Include="ast\eval\BasicEnv.cs" />
     <Compile Include="ast\eval\Environment.cs" />
+    <Compile Include="ast\eval\Function.cs" />
+    <Compile Include="ast\eval\NestedEnv.cs" />
     <Compile Include="ast\IfStmnt.cs" />
     <Compile Include="ast\Name.cs" />
     <Compile Include="ast\NegativeExpr.cs" />
     <Compile Include="ast\NullStmnt.cs" />
     <Compile Include="ast\NumberLiteral.cs" />
+    <Compile Include="ast\ParameterList.cs" />
+    <Compile Include="ast\Postfix.cs" />
     <Compile Include="ast\PrimaryExpr.cs" />
     <Compile Include="ast\StringLiteral.cs" />
     <Compile Include="ast\WhileStmnt.cs" />
     <Compile Include="parser\BasicParser.cs" />
+    <Compile Include="parser\FuncParser.cs" />
     <Compile Include="parser\ParseException.cs" />
     <Compile Include="parser\Parser.cs" />
     <Compile Include="Program.cs" />

@@ -8,4 +8,8 @@ public class BasicEnv : Environment
     public BasicEnv() { }
     public void put(string name, object value) { values.Add(name, value); }
     public object get(string name) { return values.Remove(name); }
+
+    public void putNew(string name, object value) { }
+    public Environment where(string name) { return null; }
+    public void setOuter(Environment e) { }
 }

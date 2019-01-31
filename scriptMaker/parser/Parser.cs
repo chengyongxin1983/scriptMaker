@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace scriptMaker.parser
 {
-    class Parser
+    public class Parser
     {
         protected abstract class Element
         {
@@ -160,7 +160,7 @@ namespace scriptMaker.parser
                 else
                     throw new ParseException("");
             }
-            protected void find(List<ASTree> res, Token t)
+            public virtual void find(List<ASTree> res, Token t)
             {
                 res.Add(new ASTLeaf(t));
             }
@@ -180,7 +180,7 @@ namespace scriptMaker.parser
         protected class Skip : Leaf
         {
             public Skip(String[] t):base(t) {  }
-            new protected void find(List<ASTree> res, Token t) { }
+            public override void find(List<ASTree> res, Token t) { }
        }
 
         public class Precedence

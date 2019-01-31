@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using scriptMaker.ast;
 
-namespace scriptMaker.parser
+namespace scriptMaker.ast
 {
 
     public class BlockStmnt : ASTList
