@@ -16,13 +16,18 @@ namespace scriptMaker
 	class MainClass
 	{
 
-		private static
+        private static
         //string target = "if (i==\"DSAFG\")";
 
         string target = "def fun(i)"
-            +"{ if i == 0    };" 
-            +"k=fun(5);";
-
+            + "\n{ r = 1; if i == 1 "
+            + "\n {r=1;} "
+            + "\n else {r = fun(i-1) * i;}  };"
+            + "\nk=fun(5);";
+        //string target = "def fun(i)"
+        //    + "\n{ r = 1; "
+        //    + "\n r = 2;};"
+        //    + "\n k=fun(2);";
         public static void Main (string[] args)
 		{
 			string[] strs = new string[1];

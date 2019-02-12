@@ -38,7 +38,17 @@ namespace scriptMaker.ast
             }
             return v;
         }
-        public void putNew(String name, Object value) { values.Add(name, value); }
+        public void putNew(String name, Object value)
+        {
+            if (values.ContainsKey(name))
+            {
+                values[name] = value;
+            }
+            else
+            {
+                values.Add(name, value);
+            }
+        }
         public void put(String name, Object value)
         {
             Environment e = where(name);
@@ -48,7 +58,7 @@ namespace scriptMaker.ast
         }
         public Environment where(String name)
         {
-            if (!values.ContainsKey(name))
+            if (values.ContainsKey(name))
                 return this;
             else if (outer == null)
                 return null;

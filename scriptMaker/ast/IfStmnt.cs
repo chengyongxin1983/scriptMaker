@@ -23,7 +23,8 @@ namespace scriptMaker.ast
         public override Object eval(Environment env)
         {
             Object c = ((ASTree)condition()).eval(env);
-            if (c is System.Int32 && ((System.Int32)c) != 0)
+            if ((c is System.Int32 && ((System.Int32)c) != 0 )
+                ||(c is Boolean && (Boolean)c))
                 return ((ASTree)thenBlock()).eval(env);
             else {
                 ASTree b = elseBlock();
