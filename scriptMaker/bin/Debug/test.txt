@@ -1,0 +1,14 @@
+def fun(i)
+{ 
+    r = 1; 
+    if i == 1 
+    {
+        r=1;
+    }
+    else 
+    {
+        r = fun(i-1) * i;
+    }
+};
+    
+k=fun(5);
