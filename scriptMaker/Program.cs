@@ -1,20 +1,46 @@
 ﻿using scriptMaker.ast;
 using scriptMaker.parser;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace scriptMaker
 {
-    public class Test
-    {
-        public virtual void GetM()
+
+
+    class MainClass
+    {   
+        /// FileStream读取文件
+        public static string[] FileStreamReadFile(string filePath)
         {
+            List<string> result = new List<string>();
+            try
+            {
+                FileStream file = new FileStream(filePath, FileMode.Open);
+                StreamReader sr = new StreamReader(file);//用FileStream对象实例化一个StreamReader对象
+                string strLine = null;//读取完整的文件，如果用这个方法，就可以不用下面的while循环
 
+                do
+                {
+                    strLine = sr.ReadLine();
+                    if (strLine != null)
+                    {
+                        result.Add(strLine);
+                    }
+                }
+                while (strLine != null);
+
+                sr.Close();
+                file.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result.ToArray();
         }
-    }
-
-	class MainClass
-	{
 
         private static
         //string target = "if (i==\"DSAFG\")";
@@ -30,8 +56,8 @@ namespace scriptMaker
         //    + "\n k=fun(2);";
         public static void Main (string[] args)
 		{
-			string[] strs = new string[1];
-			strs [0] = target;
+			string[] strs = FileStreamReadFile("test.txt");
+			//strs [0] = target;
 			LineNumberReader reader = new LineNumberReader (strs);
 
 			Lexer lexer = new Lexer (reader);
