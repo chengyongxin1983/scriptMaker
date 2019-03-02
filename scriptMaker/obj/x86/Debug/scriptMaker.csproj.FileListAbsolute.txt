@@ -8,3 +8,8 @@ D:\Project\scriptMaker\scriptMaker\obj\x86\Debug\scriptMaker.pdb
 D:\Project\scriptMaker\scriptMaker\bin\Debug\scriptMaker.exe
 D:\Project\scriptMaker\scriptMaker\bin\Debug\scriptMaker.pdb
 D:\Project\scriptMaker\scriptMaker\obj\x86\Debug\scriptMaker.csprojResolveAssemblyReference.cache
+C:\Project\scriptMaker\scriptMaker\obj\x86\Debug\scriptMaker.exe
+C:\Project\scriptMaker\scriptMaker\obj\x86\Debug\scriptMaker.pdb
+C:\Project\scriptMaker\scriptMaker\bin\Debug\scriptMaker.exe
+C:\Project\scriptMaker\scriptMaker\bin\Debug\scriptMaker.pdb
+C:\Project\scriptMaker\scriptMaker\obj\x86\Debug\scriptMaker.csprojResolveAssemblyReference.cache

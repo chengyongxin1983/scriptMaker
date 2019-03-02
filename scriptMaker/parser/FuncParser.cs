@@ -29,6 +29,8 @@ namespace scriptMaker.parser
 
             reserved.Add(")");
             primary.repeat(postfix);
+            primary.insertChoice(rule(typeof(Fun)).sep("fun").ast(paramList).ast(block));
+
             simple.option(args);
             program.insertChoice(def);
         }

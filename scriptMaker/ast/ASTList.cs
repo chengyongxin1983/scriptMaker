@@ -14,7 +14,7 @@ namespace scriptMaker.ast
         public override ASTree child(int i) { return _children[i]; }
         public override int numChildren() { return _children.Count; }
         public override IEnumerator<ASTree> children() { return _children.GetEnumerator(); }
-        public String toString()
+        public virtual String toString()
         {
             StringBuilder builder = new StringBuilder();
             builder.Append('(');

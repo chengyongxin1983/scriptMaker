@@ -1,14 +1,8 @@
-def fun(i)
+def test(i)
 { 
-    r = 1; 
-    if i == 1 
-    {
-        r=1;
-    }
-    else 
-    {
-        r = fun(i-1) * i;
-    }
+    fun(){i=i+1}
 };
     
-k=fun(5);
+k=test(1);
+k();
+k();
