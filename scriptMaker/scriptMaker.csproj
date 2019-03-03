@@ -40,8 +40,10 @@
     <Compile Include="ast\BinaryExpr.cs" />
     <Compile Include="ast\BlockStmnt.cs" />
     <Compile Include="ast\ClassBody.cs" />
+    <Compile Include="ast\ClassInfo.cs" />
     <Compile Include="ast\ClassStmnt.cs" />
     <Compile Include="ast\DefStmnt.cs" />
+    <Compile Include="ast\Dot.cs" />
     <Compile Include="ast\eval\BasicEnv.cs" />
     <Compile Include="ast\eval\Environment.cs" />
     <Compile Include="ast\eval\Function.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="ast\ParameterList.cs" />
     <Compile Include="ast\Postfix.cs" />
     <Compile Include="ast\PrimaryExpr.cs" />
+    <Compile Include="ast\StoneObject.cs" />
     <Compile Include="ast\StringLiteral.cs" />
     <Compile Include="ast\WhileStmnt.cs" />
     <Compile Include="parser\BasicParser.cs" />

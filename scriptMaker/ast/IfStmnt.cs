@@ -15,7 +15,7 @@ namespace scriptMaker.ast
         public ASTree elseBlock() {
             return numChildren() > 2 ? child(2) : null;
         }
-        public String toString() {
+        public override string toString() {
             return "(if " + condition() + " " + thenBlock()
                  + " else " + elseBlock() + ")";
         }

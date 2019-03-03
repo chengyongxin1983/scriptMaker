@@ -12,7 +12,7 @@ namespace scriptMaker.ast
         public WhileStmnt(List<ASTree> c) : base(c) { }
         public ASTree condition() { return child(0); }
         public ASTree body() { return child(1); }
-        public String toString()
+        public override string toString()
         {
             return "(while " + condition() + " " + body() + ")";
         }

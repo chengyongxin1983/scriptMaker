@@ -11,7 +11,7 @@ namespace scriptMaker.ast
     {
         public NegativeExpr(List<ASTree> c):base(c) { }
         public ASTree operand() { return child(0); }
-        public String toString() {
+        public override String toString() {
             return "-" + operand();
         }
     }

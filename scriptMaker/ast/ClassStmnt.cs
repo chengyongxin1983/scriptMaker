@@ -31,5 +31,12 @@ namespace scriptMaker.ast
         {
             return "class " + name();
         }
+
+        public override object eval(Environment env)
+        {
+            ClassInfo ci = new ClassInfo(this, env);
+            env.put(name(), ci);
+            return name();
+        }
     }
 }
