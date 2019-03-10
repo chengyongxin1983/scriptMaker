@@ -29,21 +29,21 @@ namespace scriptMaker.parser
               .or(new Parser[] { Parser.rule().sep("(").ast(expr0).sep(")"),
                   Parser.rule().number(typeof(NumberLiteral)),
                   Parser.rule().identifier(typeof(Name), reserved),
-                  Parser.rule().stringToken(typeof(StringLiteral)) });
+                  Parser.rule().stringToken(typeof(StringLiteral)) }).DebugName("primary");
         
             factor = Parser.rule().or(Parser.rule(typeof(NegativeExpr)).sep("-").ast(primary),
-                              primary);                               
+                              primary).DebugName("factor");
 
-            expr = expr0.expression(typeof(BinaryExpr), factor, operators);
-            statement0 = Parser.rule();
+            expr = expr0.expression(typeof(BinaryExpr), factor, operators).DebugName("express");
+            statement0 = Parser.rule().DebugName("statement");
             block = Parser.rule(typeof(BlockStmnt)).sep("{").option(statement0).repeat(Parser.rule().sep(";", Token.EOL).option(statement0)).sep("}");
-
-            simple = Parser.rule(typeof(PrimaryExpr)).ast(expr);
+            block.DebugName("block");
+            simple = Parser.rule(typeof(PrimaryExpr)).ast(expr).DebugName("simple");
             statement = statement0.or(new Parser[] { Parser.rule(typeof(IfStmnt)).sep("if").ast(expr).ast(block).option(Parser.rule().sep("else").ast(block)),
                 Parser.rule(typeof(WhileStmnt)).sep("while").ast(expr).ast(block),      simple });
 
             program = Parser.rule().or(statement, Parser.rule(typeof(NullStmnt)))
-                           .sep(";", Token.EOL);
+                           .sep(";", Token.EOL).DebugName("program");
 
             reserved.Add(";");
             reserved.Add("}");

@@ -1,8 +1,8 @@
-def test(i)
-{ 
-    fun(){i=i+1}
+class Position
+{
+	x = y = 0;
+	def move(nx, ny)
+	{
+		x = nx; y = ny;
+	}
 };
-    
-k=test(1);
-k();
-k();

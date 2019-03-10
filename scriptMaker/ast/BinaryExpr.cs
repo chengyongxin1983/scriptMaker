@@ -24,6 +24,19 @@ namespace scriptMaker.ast
         protected Object computeAssign(Environment env, Object rvalue)
         {
             ASTree l = left();
+
+            if (l is PrimaryExpr)
+            {
+                PrimaryExpr p = l as PrimaryExpr;
+                if (p.hasPostfix(0) && p.postfix(0) is Dot)
+                {
+                    object t = p.evalSubExpr(env, 1);
+                    if (t is StoneObject)
+                    {
+                        return setField((StoneObject)t, (Dot)p.postfix(0), rvalue);
+                    }
+                }
+            }
             if (l is Name) {
                 env.put(((Name)l).name(), rvalue);
                 return rvalue;
@@ -31,6 +44,21 @@ namespace scriptMaker.ast
             else
                 throw new ParseException("bad assignment");
         }
+
+        protected object setField(StoneObject obj, Dot expr, object rvalue)
+        {
+            string name = expr.name();
+            try
+            {
+                obj.Write(name, rvalue);
+                return rvalue;
+            }
+            catch (Exception e)
+            {
+                throw new ParseException("setField");
+            }
+        }
+
         protected Object computeNumber(System.Int32 left, string op, System.Int32 right)
         {
             int a = left;

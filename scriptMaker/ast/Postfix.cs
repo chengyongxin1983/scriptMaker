@@ -12,6 +12,6 @@ namespace scriptMaker.ast
     {
         public Postfix(List<ASTree> c):base(c) { }
 
-        public abstract Object eval(Environment env, object value);
+        public abstract object eval(Environment env, object value);
     }
 }

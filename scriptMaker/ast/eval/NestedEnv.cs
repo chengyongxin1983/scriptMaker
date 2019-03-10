@@ -29,7 +29,10 @@ namespace scriptMaker.ast
         public Object get(String name)
         {
             object v = null;
-            values.TryGetValue(name, out v);
+            if (!string.IsNullOrEmpty(name))
+            {
+                values.TryGetValue(name, out v);
+            }
 
             if (v == null && outer != null)
             {

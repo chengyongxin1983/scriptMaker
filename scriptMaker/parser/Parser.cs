@@ -360,8 +360,19 @@ namespace scriptMaker.parser
         protected List<Element> elements;
 
         Factory factory;
+
+        System.Type _clazz;
+        string debugName;
+
+        public Parser DebugName(string name)
+        {
+            debugName = name;
+            return this;
+        }
+
         public ASTree parse(Lexer lexer)
         {
+
             List<ASTree> results = new List<ASTree>();
             foreach (Element e in elements)
                 e.parse(lexer, results);
@@ -410,6 +421,7 @@ namespace scriptMaker.parser
         }
         Parser reset(System.Type clazz)
         {
+            _clazz = clazz;
             factory = Factory.getForASTList(clazz);
             elements = new List<Element>();
             return this;

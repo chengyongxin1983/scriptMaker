@@ -8,14 +8,14 @@ using scriptMaker.ast;
 namespace scriptMaker.ast
 {
 
-    public class Dot : ASTList
+    public class Dot : Postfix
     {
         public Dot(List<ASTree> c) : base(c) { }
 
         public string name() { return ((ASTLeaf)child(0)).token().getText(); }
 
 
-        public object eval(Environment env, object value)
+        public override object eval(Environment env, object value)
         {
             if (value is StoneObject)
             {

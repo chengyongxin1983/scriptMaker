@@ -20,12 +20,12 @@ namespace scriptMaker.parser
 
         public FuncParser() : base()
         {
-            param = Parser.rule().identifier(reserved);
-            parameters = rule(typeof(ParameterList)).ast(param).repeat(rule().sep(",").ast(param));
-            paramList = rule().sep("(").maybe(parameters).sep(")");
-            def = rule(typeof(DefStmnt)).sep("def").identifier(reserved).ast(paramList).ast(block);
-            args = rule(typeof(Arguments)).ast(expr).repeat(rule().sep(",").ast(expr));
-            postfix = rule().sep("(").maybe(args).sep(")");
+            param = Parser.rule().identifier(reserved).DebugName("param");
+            parameters = rule(typeof(ParameterList)).ast(param).repeat(rule().sep(",").ast(param)).DebugName("parameters");
+            paramList = rule().sep("(").maybe(parameters).sep(")").DebugName("paramList");
+            def = rule(typeof(DefStmnt)).sep("def").identifier(reserved).ast(paramList).ast(block).DebugName("def");
+            args = rule(typeof(Arguments)).ast(expr).repeat(rule().sep(",").ast(expr)).DebugName("args");
+            postfix = rule().sep("(").maybe(args).sep(")").DebugName("postfix");
 
             reserved.Add(")");
             primary.repeat(postfix);
@@ -33,6 +33,17 @@ namespace scriptMaker.parser
 
             simple.option(args);
             program.insertChoice(def);
+
+            // class Parser
+            Parser member = rule().or(def, simple).DebugName("member");
+            Parser class_body = rule(typeof(ClassBody))
+                .sep("{").option(member).repeat(rule().sep(";", Token.EOL).option(member)).sep("}").DebugName("classbody");
+
+            Parser defclass = rule(typeof(ClassStmnt)).sep("class").identifier(reserved)
+                .option(rule().sep("extend").identifier(reserved)).ast(class_body).DebugName("defclass");
+
+            postfix.insertChoice(rule(typeof(Dot)).sep(".").identifier(reserved));
+            program.insertChoice(defclass);
         }
     }
 }
