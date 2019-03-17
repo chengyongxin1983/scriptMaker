@@ -31,7 +31,7 @@ namespace scriptMaker.ast
 
                 parameters.eval(newEnv, num++, a.eval(callerEnv));
             }
-            return (func.body).eval(newEnv);
+            return func.eval(newEnv);
         }
     }
 }
