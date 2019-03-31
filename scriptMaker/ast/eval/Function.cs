@@ -27,30 +27,38 @@ namespace scriptMaker.ast
         }
     }
 
-    public class NativeFunction : Function
+    public class NativeFunction 
     {
-        string _navtiveClassName;
-        static Assembly asa;
+        static Assembly ass;
+        MethodInfo method;
 
-        public NativeFunction(ParameterList _parameters, Environment _env, string navtiveClassName):base(_parameters, null, _env)
+        public NativeFunction(string nativeClassName, string nativeMethodName, Type[] types)
         {
-            _navtiveClassName = navtiveClassName;
+            if (ass == null)
+            {
+                ass = Assembly.Load("mscorlib");
+            }
 
+            Type type = ass.GetType(nativeClassName);
+            method = type.GetMethod(nativeMethodName, types);
         }
         public override string ToString() { return "<navtivefun:" + ">"; }
 
-        public override object eval(Environment env)
+        public object eval(object[] args)
         {
-            object[] args = new object[parameters.size()];
-            for (int i = 0; i < parameters.size(); ++i)
+            object result = null;
+            if (method != null)
             {
-                args[i] = env.get(parameters.name(i))
+                result = method.Invoke(null, args);
             }
 
-            if (asa == null)
-            {
-                asa = Assembly.GetAssembly(typeof(NativeFunction));
-            }
+            return result;
+        }
+
+        public static void AddNativeFunctions(Environment env)
+        {
+            Type[] types = new Type[1] { typeof(string), };
+            env.put("print", new NativeFunction("System.Console", "Write", types));
         }
     }
 }

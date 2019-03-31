@@ -73,6 +73,8 @@
     <Compile Include="lexer\Lexer.cs" />
     <Compile Include="ParseException.cs" />
     <Compile Include="tools\LineNumberReader.cs" />
+    <Compile Include="ast\ArrayLiteral.cs" />
+    <Compile Include="ast\ArrayRef.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

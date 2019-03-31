@@ -6,3 +6,5 @@ class Position
 		x = nx; y = ny;
 	}
 };
+
+print("test lib");

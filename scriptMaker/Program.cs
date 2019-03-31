@@ -67,6 +67,8 @@ namespace scriptMaker
             FuncParser bp = new FuncParser();
 
             NestedEnv env = new NestedEnv();
+
+            NativeFunction.AddNativeFunctions(env);
             while (lexer.peek(0) != Token.EOF)
             {
                 ASTree ast = bp.parse(lexer);
