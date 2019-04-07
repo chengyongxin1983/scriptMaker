@@ -28,12 +28,29 @@ namespace scriptMaker.ast
             if (l is PrimaryExpr)
             {
                 PrimaryExpr p = l as PrimaryExpr;
-                if (p.hasPostfix(0) && p.postfix(0) is Dot)
+                if (p.hasPostfix(0))
                 {
-                    object t = p.evalSubExpr(env, 1);
-                    if (t is StoneObject)
+                    if (p.postfix(0) is Dot)
                     {
-                        return setField((StoneObject)t, (Dot)p.postfix(0), rvalue);
+                        object t = p.evalSubExpr(env, 1);
+                        if (t is StoneObject)
+                        {
+                            return setField((StoneObject)t, (Dot)p.postfix(0), rvalue);
+                        }
+                    }
+                    else if (p.postfix(0) is ArrayRef)
+                    {
+                        object t = p.evalSubExpr(env, 1);
+                        if (t is object[])
+                        {
+                            ArrayRef aref = (ArrayRef)p.postfix(0);
+                            object index = (aref.index()).eval(env);
+                            if (index is System.Int32)
+                            {
+                                ((object[])t)[(int)index] = rvalue;
+                                return rvalue;
+                            }
+                        }
                     }
                 }
             }

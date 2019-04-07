@@ -1,15 +1,15 @@
 ﻿<Properties StartupConfiguration="{404833B2-BE8A-4FAE-BBC6-28EDA8AF005B}|Default">
   <MonoDevelop.Ide.ItemProperties.scriptMaker PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="scriptMaker/ast/NullStmnt.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="scriptMaker/Program.cs">
     <Files>
-      <File FileName="scriptMaker/Program.cs" Line="76" Column="1" />
+      <File FileName="scriptMaker/Program.cs" Line="84" Column="1" />
       <File FileName="scriptMaker/lexer/Token.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/lexer/NumberToken.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/lexer/IdToken.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/lexer/Lexer.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ParseException.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/eval/Function.cs" Line="49" Column="19" />
-      <File FileName="scriptMaker/ast/BinaryExpr.cs" Line="1" Column="1" />
+      <File FileName="scriptMaker/ast/eval/Function.cs" Line="1" Column="1" />
+      <File FileName="scriptMaker/ast/BinaryExpr.cs" Line="50" Column="45" />
       <File FileName="scriptMaker/ast/eval/Environment.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/eval/BasicEnv.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/eval/NestedEnv.cs" Line="1" Column="1" />
@@ -17,28 +17,29 @@
       <File FileName="scriptMaker/ast/StoneObject.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/ClassInfo.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/Dot.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/PrimaryExpr.cs" Line="26" Column="25" />
-      <File FileName="scriptMaker/ast/Postfix.cs" Line="14" Column="1" />
+      <File FileName="scriptMaker/ast/PrimaryExpr.cs" Line="1" Column="1" />
+      <File FileName="scriptMaker/ast/Postfix.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/WhileStmnt.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/StringLiteral.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/parser/FuncParser.cs" Line="52" Column="47" />
+      <File FileName="scriptMaker/parser/FuncParser.cs" Line="55" Column="10" />
       <File FileName="scriptMaker/parser/BasicParser.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/parser/Parser.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/parser/ParseException.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/ClassStmnt.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/Arguments.cs" Line="38" Column="61" />
+      <File FileName="scriptMaker/ast/Arguments.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/ParameterList.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/ClassBody.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/BlockStmnt.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/ASTLeaf.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/ASTList.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/DefStmnt.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/bin/Debug/test.txt" Line="10" Column="42" />
       <File FileName="scriptMaker/ast/Name.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/ArrayLiteral.cs" Line="16" Column="10" />
-      <File FileName="scriptMaker/ast/ArrayRef.cs" Line="33" Column="17" />
+      <File FileName="scriptMaker/ast/ArrayLiteral.cs" Line="23" Column="25" />
+      <File FileName="scriptMaker/ast/ArrayRef.cs" Line="11" Column="34" />
       <File FileName="scriptMaker/ast/NumberLiteral.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/NullStmnt.cs" Line="1" Column="1" />
+      <File FileName="scriptMaker/ast/ASTree.cs" Line="1" Column="1" />
+      <File FileName="scriptMaker/bin/Debug/test.txt" Line="12" Column="13" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -47,10 +48,11 @@
             <Node name="scriptMaker" expanded="True">
               <Node name="ast" expanded="True">
                 <Node name="eval" expanded="True" />
-                <Node name="NullStmnt.cs" selected="True" />
               </Node>
               <Node name="lexer" expanded="True" />
               <Node name="parser" expanded="True" />
+              <Node name="tools" expanded="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>

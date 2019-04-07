@@ -7,4 +7,6 @@ class Position
 	}
 };
 
-print("test lib");
+a = ["211", "311", "411"];
+a[2] = 5;
+print(a[1]);

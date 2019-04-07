@@ -44,6 +44,14 @@ namespace scriptMaker.parser
 
             postfix.insertChoice(rule(typeof(Dot)).sep(".").identifier(reserved));
             program.insertChoice(defclass);
+
+            // array parser
+            Parser elements = rule(typeof(Arrayliteral)).ast(expr).repeat(rule().sep(",").ast(expr));
+            reserved.Add("]");
+            primary.insertChoice(rule().sep("[").maybe(elements).sep("]"));
+            postfix.insertChoice(rule(typeof(ArrayRef)).sep("[").ast(expr).sep("]"));
+
+
         }
     }
 }
