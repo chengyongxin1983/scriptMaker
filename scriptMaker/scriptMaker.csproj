@@ -75,6 +75,9 @@
     <Compile Include="tools\LineNumberReader.cs" />
     <Compile Include="ast\ArrayLiteral.cs" />
     <Compile Include="ast\ArrayRef.cs" />
+    <Compile Include="ast\eval\ArrayEnv.cs" />
+    <Compile Include="ast\eval\Symbols.cs" />
+    <Compile Include="ast\eval\ResizableArrayEnv.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
