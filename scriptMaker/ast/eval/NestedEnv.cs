@@ -9,6 +9,7 @@ using static scriptMaker.parser.Parser;
 
 namespace scriptMaker.ast
 {
+
     public class NestedEnv : Environment
     {
         protected Dictionary<string, object> values;
@@ -68,5 +69,21 @@ namespace scriptMaker.ast
             else
                 return ((Environment)outer).where(name);
         }
+
+        public Symbols symbols()
+        {
+            throw new Exception("non implement");
+        }
+
+        public void put(int nest, int index, object value)
+        {
+            throw new Exception("non implement");
+        }
+
+        public object get(int nest, int index)
+        {
+            throw new Exception("non implement");
+        }
     }
+
 }

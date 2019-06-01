@@ -10,6 +10,7 @@ namespace scriptMaker.ast
 
     public class Fun : ASTList
     {
+        protected int size = -1;
         public Fun(List<ASTree> c) : base(c) { }
 
         public  ParameterList parameters() { return (ParameterList)child(0); }
@@ -23,7 +24,20 @@ namespace scriptMaker.ast
 
         public override Object eval(Environment env)
         {
-            return new Function(parameters(), body(), env);
+            return new Function(parameters(), body(), env, size);
+        }
+
+        public override void lookup(Symbols syms)
+        {
+            size = lookup(syms, parameters(), body());
+        }
+
+        public static int lookup(Symbols syms, ParameterList parameters, BlockStmnt body)
+        {
+            Symbols newSyms = new Symbols(syms);
+            parameters.lookup(newSyms);
+            body.lookup(newSyms);
+            return newSyms.size();
         }
     }
 }

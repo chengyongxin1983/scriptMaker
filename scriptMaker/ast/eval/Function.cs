@@ -13,12 +13,15 @@ namespace scriptMaker.ast
         public ParameterList parameters;
         public BlockStmnt body;
         public Environment env;
-        public Function(ParameterList _parameters, BlockStmnt _body, Environment _env) {
+
+        protected int size;
+        public Function(ParameterList _parameters, BlockStmnt _body, Environment _env, int memorysize) {
             parameters = _parameters;
             body = _body;
             env = _env;
+            size = memorysize;
         }
-        public Environment makeEnv() { return new NestedEnv(env); }
+        public Environment makeEnv() { return new ArrayEnv(size, env); }
         public override string ToString() { return "<fun:" + ">"; }
 
         public virtual object eval(Environment env)
@@ -58,7 +61,8 @@ namespace scriptMaker.ast
         public static void AddNativeFunctions(Environment env)
         {
             Type[] types = new Type[1] { typeof(string), };
-            env.put("print", new NativeFunction("System.Console", "Write", types));
+            Symbols.Location loc = env.symbols().put("print");
+            env.put(loc.nest, loc.index, new NativeFunction("System.Console", "Write", types));
         }
     }
 }

@@ -26,7 +26,7 @@ namespace scriptMaker.ast
                 if (name() == "new")
                 {
                     ClassInfo ci = value as ClassInfo;
-                    Environment newenv = new NestedEnv(ci.Environment());
+                    Environment newenv = new ArrayEnv(10, ci.Environment());
                     StoneObject so = new StoneObject(newenv);
                     newenv.put("this", so);
                     InitObject(ci, env);

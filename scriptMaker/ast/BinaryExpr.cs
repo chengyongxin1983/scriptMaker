@@ -54,8 +54,9 @@ namespace scriptMaker.ast
                     }
                 }
             }
-            if (l is Name) {
-                env.put(((Name)l).name(), rvalue);
+           
+             if (l is Name) {
+                ((Name)l).evalForAssign(env, rvalue);
                 return rvalue;
             }
             else
@@ -129,5 +130,21 @@ namespace scriptMaker.ast
             object rightObj = right().eval(env);
             return ComputeOp(leftObj, op, rightObj);
         }
+
+        public override void lookup(Symbols syms)
+        {
+            ASTree leftast = left();
+            if ("=" == GetOperator())
+            {
+                if (leftast is Name) {
+                    ((Name)leftast).lookupForAssign(syms);
+                    ((ASTree)right()).lookup(syms);
+                    return;
+                }
+            }
+            leftast.lookup(syms);
+            right().lookup(syms);
+        }
+
     }
 }

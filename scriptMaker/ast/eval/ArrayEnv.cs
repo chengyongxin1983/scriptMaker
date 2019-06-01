@@ -12,7 +12,7 @@ namespace scriptMaker.ast
     public class ArrayEnv : Environment
     {
         protected object[] values;
-        protected ArrayEnv outer;
+        protected Environment outer;
 
         public ArrayEnv()
         {

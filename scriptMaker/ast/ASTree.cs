@@ -15,7 +15,7 @@ namespace scriptMaker.ast
 
         public abstract IEnumerator<ASTree> children();
         public abstract Object eval(Environment env);
-        
+        public abstract void lookup(Symbols syms);
     }
 
 }

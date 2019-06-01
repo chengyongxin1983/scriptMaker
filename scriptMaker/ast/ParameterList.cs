@@ -16,7 +16,22 @@ namespace scriptMaker.ast
         public int size() { return numChildren(); }
         public void eval(Environment env, int index, Object value)
         {
-            env.putNew(name(index), value);
+            env.put(0, offsets[index], value);
         }
+
+        protected int[] offsets = null;
+
+        public override void lookup(Symbols syms)
+        {
+            int s = size();
+            offsets = new int[s];
+
+            for (int i = 0; i < s; ++i)
+            {
+                offsets[i] = syms.putNew(name(i));
+            }
+        }
+
+
     }
 }

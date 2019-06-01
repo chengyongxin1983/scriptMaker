@@ -57,6 +57,8 @@ namespace scriptMaker.ast
                 Array.Copy(values, newValues, values.Length);
                 values = newValues;
             }
+
+            values[index] = value;
         }
 
         public override void putNew(string name, object value)

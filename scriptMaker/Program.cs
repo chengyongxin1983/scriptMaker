@@ -66,13 +66,15 @@ namespace scriptMaker
 			Console.WriteLine ("Hello World!");
             FuncParser bp = new FuncParser();
 
-            NestedEnv env = new NestedEnv();
+            ResizableArrayEnv env = new ResizableArrayEnv();
 
             NativeFunction.AddNativeFunctions(env);
             while (lexer.peek(0) != Token.EOF)
             {
                 ASTree ast = bp.parse(lexer);
-                if (!(ast is NullStmnt)) {
+                if (!(ast is NullStmnt)) 
+                {
+                    ast.lookup(env.symbols());
                     object r = ast.eval(env);
                     
                 }

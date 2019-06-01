@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 
+/*
 public class BasicEnv : Environment
 {
     protected Dictionary<string, object> values = new Dictionary<string, object> ();
@@ -13,3 +14,4 @@ public class BasicEnv : Environment
     public Environment where(string name) { return null; }
     public void setOuter(Environment e) { }
 }
+*/

@@ -21,7 +21,7 @@ namespace scriptMaker.ast
 
         public Symbols()
         {
-
+            table = new Dictionary<string, int>();
         }
 
         public Symbols(Symbols _outer)
@@ -43,6 +43,11 @@ namespace scriptMaker.ast
         public int find(string key, out bool result)
         {
             int value = 0;
+            if (string.IsNullOrEmpty(key))
+            {
+                result = false;
+                return value;
+            }
             result = table.TryGetValue(key, out value);
             return value;
         }
@@ -65,7 +70,7 @@ namespace scriptMaker.ast
                 return null;
             }
 
-            return get(key, nest + 1);
+            return outer.get(key, nest + 1);
         }
 
         protected int add(string key)

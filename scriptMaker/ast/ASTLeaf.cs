@@ -23,6 +23,12 @@ namespace scriptMaker.ast
         {
             throw new ParseException("cannot eval: " + toString());
         }
+
+
+        public override void lookup(Symbols syms)
+        {
+
+        }
     }
 
 }
