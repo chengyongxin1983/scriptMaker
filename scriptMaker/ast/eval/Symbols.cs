@@ -57,7 +57,7 @@ namespace scriptMaker.ast
             return get(key, 0);
         }
 
-        public Location get(string key, int nest)
+        public virtual Location get(string key, int nest)
         {
             int value = 0;
             if (table.TryGetValue(key, out value))
@@ -80,7 +80,7 @@ namespace scriptMaker.ast
             return i;
         }
 
-        public int putNew(string key)
+        public virtual int putNew(string key)
         {
             int value = 0;
             if (!table.TryGetValue(key, out value))
@@ -91,7 +91,7 @@ namespace scriptMaker.ast
             return value;
         }
 
-        public Location put(string key)
+        public virtual Location put(string key)
         {
             Location loc = get(key, 0);
 

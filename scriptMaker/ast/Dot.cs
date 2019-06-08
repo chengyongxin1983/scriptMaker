@@ -17,19 +17,19 @@ namespace scriptMaker.ast
 
         public override object eval(Environment env, object value)
         {
-            if (value is StoneObject)
+            if (value is OptStoneObject)
             {
-                return ((StoneObject)value).Read(name());
+                return ((OptStoneObject)value).Read(name());
             }
             else if (value is ClassInfo)
             {
                 if (name() == "new")
                 {
-                    ClassInfo ci = value as ClassInfo;
-                    Environment newenv = new ArrayEnv(10, ci.Environment());
-                    StoneObject so = new StoneObject(newenv);
-                    newenv.put("this", so);
-                    InitObject(ci, env);
+                    ClassInfo ci = (ClassInfo)value;
+                    ArrayEnv newEnv = new ArrayEnv(1, ci.Environment());
+                    OptStoneObject so = new OptStoneObject(ci, ci.size());
+                    newEnv.put(0, 0, so);
+                    initObject(ci, so, newEnv);
                     return so;
                 }
 
@@ -37,14 +37,19 @@ namespace scriptMaker.ast
             return null;
         }
 
-        protected void InitObject(ClassInfo ci, Environment env)
+        protected void initObject(ClassInfo ci, OptStoneObject obj,
+                                 Environment env)
         {
             if (ci.SuperClass() != null)
-            {
-                InitObject(ci.SuperClass(), env);
-            }
+                initObject(ci.SuperClass(), obj, env);
+            (ci.body()).eval(env);
+        }
 
-            ci.body().eval(env);
+        protected void InitObject(ClassInfo ci, OptStoneObject obj, Environment env)
+        {
+            if (ci.SuperClass() != null)
+                initObject(ci.SuperClass(), obj, env);
+            (ci.body()).eval(env);
         }
 
         public override string toString()

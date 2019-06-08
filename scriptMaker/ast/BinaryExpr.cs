@@ -33,9 +33,9 @@ namespace scriptMaker.ast
                     if (p.postfix(0) is Dot)
                     {
                         object t = p.evalSubExpr(env, 1);
-                        if (t is StoneObject)
+                        if (t is OptStoneObject)
                         {
-                            return setField((StoneObject)t, (Dot)p.postfix(0), rvalue);
+                            return setField((OptStoneObject)t, (Dot)p.postfix(0), rvalue);
                         }
                     }
                     else if (p.postfix(0) is ArrayRef)
@@ -63,12 +63,12 @@ namespace scriptMaker.ast
                 throw new ParseException("bad assignment");
         }
 
-        protected object setField(StoneObject obj, Dot expr, object rvalue)
+        protected object setField(OptStoneObject obj, Dot expr, object rvalue)
         {
             string name = expr.name();
             try
             {
-                obj.Write(name, rvalue);
+                obj.write(name, rvalue);
                 return rvalue;
             }
             catch (Exception e)

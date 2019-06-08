@@ -10,15 +10,51 @@ namespace scriptMaker.ast
 
     public class ClassInfo
     {
+
+        protected Symbols methods, fields;
+        protected DefStmnt[] methodDefs;
+
+        public int size() { return fields.size(); }
+
+        public void copyTo(Symbols f, Symbols m, List<DefStmnt> mlist)
+        {
+            f.append(fields);
+            m.append(methods);
+            foreach (DefStmnt def in methodDefs)
+                mlist.Add(def);
+        }
+
+        public int fieldIndex(String name, out bool bFind) 
+        {
+            return fields.find(name, out bFind); 
+
+        }
+
+        public int methodIndex(String name, out bool bFind) 
+        {
+             return methods.find(name, out bFind);
+        }
+
+
+        public void setMethods(List<DefStmnt> methods)
+        {
+            methodDefs = methods.ToArray();
+        }
+
         protected ClassStmnt definition;
+
         protected Environment environment;
         protected ClassInfo superClass;
 
-        public ClassInfo(ClassStmnt cs, Environment env)
-        {
+
+    public ClassInfo(ClassStmnt cs, Environment env, Symbols methods,
+                        Symbols fields)
+    {
             definition = cs;
             environment = env;
-
+            methods = methods;
+            fields = fields;
+            methodDefs = null;
             object obj = env.get(cs.superClass());
 
             if (obj == null)
@@ -47,6 +83,14 @@ namespace scriptMaker.ast
         {
             return "<class " + name() + ">";
         }
+
+        public Object method(OptStoneObject self, int index)
+        {
+            DefStmnt def = methodDefs[index];
+            return new OptMethod(def.parameters(), def.body(), environment,
+                                 (def).locals(), self);
+        }
+
 
     }
 }

@@ -22,8 +22,18 @@ namespace scriptMaker.ast
         {
             if (index == UNKNOWN)
                 return env.get(name());
+            else if (nest == MemberSymbols.FIELD)
+                return getThis(env).read(index);
+            else if (nest == MemberSymbols.METHOD)
+                return getThis(env).method(index);
             else
                 return env.get(nest, index);
+        }
+
+
+        protected OptStoneObject getThis(Environment env)
+        {
+            return (OptStoneObject)env.get(0, 0);
         }
 
         public override void lookup(Symbols syms)
@@ -52,8 +62,12 @@ namespace scriptMaker.ast
         {
             if (index == UNKNOWN)
                 env.put(name(), value);
+            else if (nest == MemberSymbols.FIELD)
+                getThis(env).write(index, value);
+            else if (nest == MemberSymbols.METHOD)
+                throw new Exception("cannot update a method: " + name());
             else
-                env.put(nest, index, value);
+                (env).put(nest, index, value);
         }
     }
 }

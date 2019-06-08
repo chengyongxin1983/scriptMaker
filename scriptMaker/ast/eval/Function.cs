@@ -21,7 +21,14 @@ namespace scriptMaker.ast
             env = _env;
             size = memorysize;
         }
-        public Environment makeEnv() { return new ArrayEnv(size, env); }
+        public virtual Environment makeEnv()
+        {
+            var e = new ArrayEnv(size, env);
+            return e;
+        }
+
+
+
         public override string ToString() { return "<fun:" + ">"; }
 
         public virtual object eval(Environment env)
@@ -65,4 +72,25 @@ namespace scriptMaker.ast
             env.put(loc.nest, loc.index, new NativeFunction("System.Console", "Write", types));
         }
     }
+
+
+
+
+    public class OptMethod : Function
+    {
+        OptStoneObject self;
+         public OptMethod(ParameterList parameters, BlockStmnt body,
+                     Environment env, int memorySize, OptStoneObject _self):
+        base(parameters, body, env, memorySize)
+        {
+            self = _self;
+        }
+        public override Environment makeEnv()
+        {
+            ArrayEnv e = new ArrayEnv(size, env);
+            e.put(0, 0, self);
+            return e;
+        }
+    }
+
 }

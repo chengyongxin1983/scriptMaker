@@ -78,6 +78,8 @@
     <Compile Include="ast\eval\ArrayEnv.cs" />
     <Compile Include="ast\eval\Symbols.cs" />
     <Compile Include="ast\eval\ResizableArrayEnv.cs" />
+    <Compile Include="ast\SymbolThis.cs" />
+    <Compile Include="ast\MemberSymbols.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

@@ -34,5 +34,15 @@ namespace scriptMaker.ast
             index = syms.putNew(name());
             size = Fun.lookup(syms, parameters(), body());
         }
+
+        public int locals() { return size; }
+        public void lookupAsMethod(Symbols syms)
+        {
+            Symbols newSyms = new Symbols(syms);
+            newSyms.putNew(SymbolThis.NAME);
+            parameters().lookup(newSyms);
+            body().lookup(newSyms);
+            size = newSyms.size();
+        }
     }
 }
