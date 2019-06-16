@@ -27,6 +27,10 @@ namespace scriptMaker.ast
             return (ClassBody)child(numChildren() - 1);
         }
 
+        public override void lookup(Symbols syms)
+        {
+        }
+
         public override string toString()
         {
             return "class " + name();

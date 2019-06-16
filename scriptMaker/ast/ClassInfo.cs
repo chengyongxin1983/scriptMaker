@@ -47,13 +47,13 @@ namespace scriptMaker.ast
         protected ClassInfo superClass;
 
 
-    public ClassInfo(ClassStmnt cs, Environment env, Symbols methods,
-                        Symbols fields)
+    public ClassInfo(ClassStmnt cs, Environment env, Symbols _methods,
+                        Symbols _fields)
     {
             definition = cs;
             environment = env;
-            methods = methods;
-            fields = fields;
+            methods = _methods;
+            fields = _fields;
             methodDefs = null;
             object obj = env.get(cs.superClass());
 

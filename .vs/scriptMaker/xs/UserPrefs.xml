@@ -1,52 +1,28 @@
 ﻿<Properties StartupConfiguration="{404833B2-BE8A-4FAE-BBC6-28EDA8AF005B}|Default">
   <MonoDevelop.Ide.ItemProperties.scriptMaker PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="scriptMaker/ast/eval/Symbols.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="scriptMaker/ast/SymbolThis.cs">
     <Files>
-      <File FileName="scriptMaker/Program.cs" Line="75" Column="1" />
-      <File FileName="scriptMaker/lexer/Token.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/lexer/NumberToken.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/lexer/IdToken.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/lexer/Lexer.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ParseException.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/eval/Function.cs" Line="66" Column="1" />
+      <File FileName="scriptMaker/ast/ClassInfo.cs" Line="56" Column="1" />
+      <File FileName="scriptMaker/ast/eval/Symbols.cs" Line="6" Column="18" />
+      <File FileName="scriptMaker/ast/eval/Function.cs" Line="36" Column="1" />
       <File FileName="scriptMaker/ast/BinaryExpr.cs" Line="140" Column="1" />
-      <File FileName="scriptMaker/ast/eval/Environment.cs" Line="4" Column="18" />
-      <File FileName="scriptMaker/ast/eval/BasicEnv.cs" Line="17" Column="3" />
-      <File FileName="scriptMaker/ast/eval/NestedEnv.cs" Line="85" Column="23" />
       <File FileName="scriptMaker/ast/Fun.cs" Line="29" Column="1" />
-      <File FileName="scriptMaker/ast/StoneObject.cs" Line="19" Column="25" />
-      <File FileName="scriptMaker/ast/ClassInfo.cs" Line="31" Column="14" />
-      <File FileName="scriptMaker/ast/Dot.cs" Line="22" Column="48" />
-      <File FileName="scriptMaker/ast/PrimaryExpr.cs" Line="29" Column="14" />
-      <File FileName="scriptMaker/ast/Postfix.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/WhileStmnt.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/StringLiteral.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/parser/FuncParser.cs" Line="21" Column="16" />
-      <File FileName="scriptMaker/parser/BasicParser.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/parser/Parser.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/parser/ParseException.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/ClassStmnt.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/Arguments.cs" Line="46" Column="1" />
-      <File FileName="scriptMaker/ast/ParameterList.cs" Line="19" Column="37" />
-      <File FileName="scriptMaker/ast/ClassBody.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/BlockStmnt.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/ASTLeaf.cs" Line="14" Column="48" />
-      <File FileName="scriptMaker/ast/.#DefStmnt.cs" Line="46" Column="25" />
-      <File FileName="scriptMaker/ast/.#Name.cs" Line="32" Column="1" />
-      <File FileName="scriptMaker/ast/.#ASTree.cs" Line="56" Column="20" />
-      <File FileName="scriptMaker/ast/ArrayLiteral.cs" Line="23" Column="25" />
-      <File FileName="scriptMaker/ast/ArrayRef.cs" Line="41" Column="1" />
-      <File FileName="scriptMaker/ast/NumberLiteral.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/NullStmnt.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/ASTree.cs" Line="10" Column="27" />
-      <File FileName="scriptMaker/bin/Debug/test.txt" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/eval/ResizableArrayEnv.cs" Line="19" Column="1" />
-      <File FileName="scriptMaker/ast/eval/ArrayEnv.cs" Line="32" Column="1" />
-      <File FileName="scriptMaker/ast/eval/Symbols.cs" Line="47" Column="17" />
-      <File FileName="scriptMaker/ast/IfStmnt.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/DefStmnt.cs" Line="28" Column="34" />
-      <File FileName="scriptMaker/ast/Name.cs" Line="48" Column="1" />
-      <File FileName="未找到源" />
+      <File FileName="scriptMaker/ast/StoneObject.cs" Line="25" Column="1" />
+      <File FileName="scriptMaker/ast/DefStmnt.cs" Line="28" Column="50" />
+      <File FileName="scriptMaker/ast/BlockStmnt.cs" Line="26" Column="2" />
+      <File FileName="scriptMaker/ast/ClassStmnt.cs" Line="52" Column="1" />
+      <File FileName="scriptMaker/ast/MemberSymbols.cs" Line="39" Column="1" />
+      <File FileName="scriptMaker/ast/Dot.cs" Line="28" Column="53" />
+      <File FileName="scriptMaker/ast/PrimaryExpr.cs" Line="34" Column="1" />
+      <File FileName="scriptMaker/ast/Arguments.cs" Line="34" Column="1" />
+      <File FileName="scriptMaker/ast/ASTList.cs" Line="15" Column="1" />
+      <File FileName="scriptMaker/ast/Name.cs" Line="55" Column="1" />
+      <File FileName="scriptMaker/ast/ASTLeaf.cs" Line="17" Column="22" />
+      <File FileName="scriptMaker/Program.cs" Line="78" Column="1" />
+      <File FileName="scriptMaker/ast/ClassBody.cs" Line="43" Column="1" />
+      <File FileName="scriptMaker/lexer/IdToken.cs" Line="20" Column="1" />
+      <File FileName="scriptMaker/ast/SymbolThis.cs" Line="23" Column="28" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -54,9 +30,8 @@
           <Node name="scriptMaker" expanded="True">
             <Node name="scriptMaker" expanded="True">
               <Node name="ast" expanded="True">
-                <Node name="eval" expanded="True">
-                  <Node name="Symbols.cs" selected="True" />
-                </Node>
+                <Node name="eval" expanded="True" />
+                <Node name="SymbolThis.cs" selected="True" />
               </Node>
               <Node name="lexer" expanded="True" />
               <Node name="parser" expanded="True" />
@@ -66,14 +41,25 @@
         </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
+        <State>
+          <Value>((Name)leftast).name()</Value>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/cyx/Projects/scriptMaker/scriptMaker/ast/ClassInfo.cs" relfile="scriptMaker/ast/ClassInfo.cs" line="21" column="30" />
+      <Breakpoint file="/Users/cyx/Projects/scriptMaker/scriptMaker/ast/Name.cs" relfile="scriptMaker/ast/Name.cs" line="44" column="45" />
+      <Breakpoint file="/Users/cyx/Projects/scriptMaker/scriptMaker/ast/Name.cs" relfile="scriptMaker/ast/Name.cs" line="26" column="1" />
+      <Breakpoint file="/Users/cyx/Projects/scriptMaker/scriptMaker/ast/Name.cs" relfile="scriptMaker/ast/Name.cs" line="28" column="1" />
+      <Breakpoint file="/Users/cyx/Projects/scriptMaker/scriptMaker/ast/Name.cs" relfile="scriptMaker/ast/Name.cs" line="36" column="46" />
+      <Breakpoint file="/Users/cyx/Projects/scriptMaker/scriptMaker/ast/StoneObject.cs" relfile="scriptMaker/ast/StoneObject.cs" line="25" column="54" />
+      <Breakpoint file="/Users/cyx/Projects/scriptMaker/scriptMaker/ast/ClassStmnt.cs" relfile="scriptMaker/ast/ClassStmnt.cs" line="54" column="16" />
+      <Breakpoint file="/Users/cyx/Projects/scriptMaker/scriptMaker/ast/ClassStmnt.cs" relfile="scriptMaker/ast/ClassStmnt.cs" line="52" column="40" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
