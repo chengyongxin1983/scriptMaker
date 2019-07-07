@@ -80,7 +80,17 @@
     <Compile Include="ast\eval\ResizableArrayEnv.cs" />
     <Compile Include="ast\SymbolThis.cs" />
     <Compile Include="ast\MemberSymbols.cs" />
+    <Compile Include="vm\Opcode.cs" />
+    <Compile Include="vm\StoneVM.cs" />
+    <Compile Include="vm\HeapMemory.cs" />
+    <Compile Include="vm\VmFunction.cs" />
+    <Compile Include="vm\StoneVMEnv.cs" />
+    <Compile Include="vm\Code.cs" />
+    <Compile Include="vm\VmEvaluator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="vm\" />
+  </ItemGroup>
 </Project>
