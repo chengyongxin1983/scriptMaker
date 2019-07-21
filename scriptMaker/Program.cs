@@ -1,5 +1,6 @@
 ﻿using scriptMaker.ast;
 using scriptMaker.parser;
+using scriptMaker.vm;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -66,7 +67,7 @@ namespace scriptMaker
 			Console.WriteLine ("Hello World!");
             FuncParser bp = new FuncParser();
 
-            ResizableArrayEnv env = new ResizableArrayEnv();
+            ResizableArrayEnv env = new StoneVMEnv(100000, 100000, 1000);
 
             NativeFunction.AddNativeFunctions(env);
             while (lexer.peek(0) != Token.EOF)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using scriptMaker.ast;
+using scriptMaker.vm;
 using static scriptMaker.parser.Parser;
 
 namespace scriptMaker.ast
@@ -16,7 +17,9 @@ namespace scriptMaker.ast
         public int size() { return numChildren(); }
         public void eval(Environment env, int index, Object value)
         {
-            env.put(0, offsets[index], value);
+            //env.put(0, offsets[index], value);
+            StoneVM vm = env.stoneVM();
+            vm.getStack()[offsets[index]] = value;
         }
 
         protected int[] offsets = null;

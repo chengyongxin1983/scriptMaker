@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using scriptMaker.ast;
+using scriptMaker.vm;
 using static scriptMaker.parser.Parser;
 
 namespace scriptMaker.ast
@@ -79,6 +80,16 @@ namespace scriptMaker.ast
             // error here
 
             return null;
+        }
+
+
+        public virtual StoneVM stoneVM()
+        {
+            throw new ParseException("not implement");
+        }
+        public virtual Code code()
+        {
+            throw new ParseException("not implement");
         }
 
     }

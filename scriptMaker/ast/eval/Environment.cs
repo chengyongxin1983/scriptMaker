@@ -1,5 +1,6 @@
 
 using scriptMaker.ast;
+using scriptMaker.vm;
 
 public interface Environment {
     void put(string name, object value);
@@ -12,4 +13,6 @@ public interface Environment {
     Symbols symbols();
     void put(int nest, int index, object value);
     object get(int nest, int index);
+    StoneVM stoneVM();
+    Code code();
 }

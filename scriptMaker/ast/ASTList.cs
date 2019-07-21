@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using scriptMaker.vm;
 
 namespace scriptMaker.ast
 {
@@ -50,6 +51,15 @@ namespace scriptMaker.ast
                 t.lookup(syms);
             }
         }
+
+        public override void compile(Code c)
+        {
+            foreach (ASTree t in _children)
+            {
+                t.compile(c);
+            }
+        }
+
     }
 
 }

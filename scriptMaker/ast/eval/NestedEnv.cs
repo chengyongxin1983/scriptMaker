@@ -9,7 +9,7 @@ using static scriptMaker.parser.Parser;
 
 namespace scriptMaker.ast
 {
-
+    /*
     public class NestedEnv : Environment
     {
         protected Dictionary<string, object> values;
@@ -85,5 +85,6 @@ namespace scriptMaker.ast
             throw new Exception("non implement");
         }
     }
+    */
 
 }

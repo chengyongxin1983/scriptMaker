@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using scriptMaker.ast;
+using scriptMaker.vm;
 using static scriptMaker.parser.Parser;
 
 namespace scriptMaker.ast
@@ -16,22 +17,24 @@ namespace scriptMaker.ast
         
         public override object eval(Environment callerEnv, object value)
         {
-            if (value is Function)
+            if (value is VmFunction)
             {
-                Function func = (Function)value;
+                VmFunction func = (VmFunction)value;
                 ParameterList parameters = func.parameters;
                 if (size() != parameters.size())
                     throw new ParseException("bad number of arguments");
-                Environment newEnv = func.makeEnv();
                 int num = 0;
 
                 for (int i = 0; i < numChildren(); ++i)
                 {
                     ASTree a = child(i);
 
-                    parameters.eval(newEnv, num++, a.eval(callerEnv));
+                    parameters.eval(callerEnv, num++, a.eval(callerEnv));
                 }
-                return func.eval(newEnv);
+
+                StoneVM svm = callerEnv.stoneVM();
+                svm.run(func.getEntry());
+                return svm.getStack()[0];
             }
             else if (value is NativeFunction)
             {
@@ -52,6 +55,28 @@ namespace scriptMaker.ast
                 throw new ParseException("bad function");
             }
 
+        }
+
+        public override void compile(Code c)
+        {
+            int newOffset = c.frameSize;
+            int numOfArgs = 0;
+            for (int i = 0; i < numChildren(); ++i)
+            {
+                ASTree a = child(i);
+
+                a.compile(c);
+                c.add(Opcode.Code.MOVE);
+                c.add(Opcode.encodeRegister(--c.nextReg));
+                c.add(Opcode.encodeOffset(newOffset++));
+                numOfArgs++;
+            }
+            c.add(Opcode.Code.CALL);
+            c.add(Opcode.encodeRegister(--c.nextReg));
+            c.add(Opcode.encodeOffset(numOfArgs));
+            c.add(Opcode.Code.MOVE);
+            c.add(Opcode.encodeOffset(c.frameSize));
+            c.add(Opcode.encodeRegister(c.nextReg++));
         }
     }
 }

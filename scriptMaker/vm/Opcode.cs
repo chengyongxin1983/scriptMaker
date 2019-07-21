@@ -30,30 +30,33 @@ namespace scriptMaker.vm
 
     }
 
-     encodeRegister(int reg)
+        public static byte encodeRegister(int reg)
         {
             if (reg > StoneVM.NUM_OF_REG)
-                throw new StoneException("too many registers required");
+                throw new Exception("too many registers required");
             else
                 return (byte)-(reg + 1);
         }
+
         public static int decodeRegister(byte operand) { return -1 - operand; }
-         encodeOffset(int offset)
+
+        public static byte encodeOffset(int offset)
         {
-            if (offset > Byte.MAX_VALUE)
-                throw new StoneException("too big byte offset");
+            if (offset > Byte.MaxValue)
+                throw new Exception("too big byte offset");
             else
                 return (byte)offset;
         }
+
         public static short encodeShortOffset(int offset)
         {
-            if (offset < Short.MIN_VALUE || Short.MAX_VALUE < offset)
-                throw new StoneException("too big short offset");
+            if (offset < short.MinValue || short.MaxValue < offset)
+                throw new Exception("too big short offset");
             else
                 return (short)offset;
         }
         public static int decodeOffset(byte operand) { return operand; }
-        public static boolean isRegister(byte operand) { return operand < 0; }
-        public static boolean isOffset(byte operand) { return operand >= 0; }
+        public static bool isRegister(byte operand) { return operand < 0; }
+        public static bool isOffset(byte operand) { return operand >= 0; }
     }
 }

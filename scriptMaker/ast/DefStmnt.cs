@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using scriptMaker.ast;
+using scriptMaker.vm;
 using static scriptMaker.parser.Parser;
 
 namespace scriptMaker.ast
@@ -25,7 +26,10 @@ namespace scriptMaker.ast
 
         public override Object eval(Environment env)
         {
-            ((Environment)env).put(0, index, new Function(parameters(), body(), env, size));
+            Code code = env.code();
+            int entry = code.position();
+            env.putNew(name(), new VmFunction(parameters(), body(), env, entry));
+            //((Environment)env).put(0, index, new Function(parameters(), body(), env, size));
             return name();
         }
 
@@ -43,6 +47,22 @@ namespace scriptMaker.ast
             parameters().lookup(newSyms);
             body().lookup(newSyms);
             size = newSyms.size();
+        }
+
+        public override void compile(Code c)
+        {
+            c.nextReg = 0;
+            c.frameSize = size + StoneVM.SAVE_AREA_SIZE; // size is argument number
+
+            c.add(Opcode.Code.SAVE);
+            c.add(Opcode.encodeShortOffset(size));
+            body().compile(c);
+            c.add(Opcode.Code.MOVE);
+            c.add(Opcode.decodeRegister((byte)(c.nextReg - 1)));
+            c.add(Opcode.encodeOffset(0));
+            c.add(Opcode.Code.RESTORE);
+            c.add(Opcode.encodeOffset(size));
+            c.add(Opcode.Code.RETURN);
         }
     }
 }

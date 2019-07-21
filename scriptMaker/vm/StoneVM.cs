@@ -1,4 +1,6 @@
 ﻿using System;
+using scriptMaker.ast;
+
 namespace scriptMaker.vm
 {
     public class StoneVM
@@ -35,7 +37,7 @@ namespace scriptMaker.vm
         public HeapMemory getHeap() { return heap; }
 
 
-        protected void run(int entry)
+        public void run(int entry)
         {
             pc = entry;
             fp = 0;
@@ -123,7 +125,7 @@ namespace scriptMaker.vm
                         break;
                     }
                 default:
-                    if (code[pc] > LESS)
+                    if (code[pc] > (int)Opcode.Code.LESS)
                         throw new Exception("bad instruction");
                     else
                         computeNumber();
@@ -166,20 +168,21 @@ namespace scriptMaker.vm
         {
             Object value = registers[Opcode.decodeRegister(code[pc + 1])];
             int numOfArgs = code[pc + 2];
-            if (value instanceof VmFunction
-            && ((VmFunction)value).parameters().size() == numOfArgs) {
+            if (value is VmFunction
+            && ((VmFunction)value).parameters.size() == numOfArgs) {
                 ret = pc + 3;
-                pc = ((VmFunction)value).entry();
+                pc = ((VmFunction)value).getEntry();
             }
-        else if (value instanceof NativeFunction
-                && ((NativeFunction)value).numOfParameters() == numOfArgs) {
+        else if (value is NativeFunction) 
+        {
                 Object[] args = new Object[numOfArgs];
                 for (int i = 0; i < numOfArgs; i++)
                     args[i] = stack[sp + i];
-                stack[sp] = ((NativeFunction)value).invoke(args,
-                                            new ASTList(new ArrayList<ASTree>()));
+                //stack[sp] = ((NativeFunction)value).invoke(args,
+                                           // new ASTList(new ArrayList<ASTree>()));
                 pc += 3;
-            }
+           
+        }
         else
             throw new Exception("bad function call");
         }
@@ -201,8 +204,8 @@ namespace scriptMaker.vm
             for (int i = 0; i < NUM_OF_REG; i++)
                 registers[i] = stack[dest++];
             sp = fp;
-            fp = ((Integer)stack[dest++]).intValue();
-            ret = ((Integer)stack[dest++]).intValue();
+            fp = ((int)stack[dest++]);
+            ret = ((int)stack[dest++]);
             pc += 2;
         }
         protected void computeNumber()
@@ -211,51 +214,51 @@ namespace scriptMaker.vm
             int right = Opcode.decodeRegister(code[pc + 2]);
             Object v1 = registers[left];
             Object v2 = registers[right];
-            boolean areNumbers = v1 instanceof Integer && v2 instanceof Integer;
-            if (code[pc] == ADD && !areNumbers)
-                registers[left] = String.valueOf(v1) + String.valueOf(v2);
-            else if (code[pc] == EQUAL && !areNumbers)
+            bool areNumbers = v1 is int && v2 is int;
+            if ((Opcode.Code)code[pc] == Opcode.Code.ADD && !areNumbers)
+                registers[left] = v1.ToString() + v2.ToString();
+            else if ((Opcode.Code)code[pc] == Opcode.Code.EQUAL && !areNumbers)
             {
                 if (v1 == null)
                     registers[left] = v2 == null ? TRUE : FALSE;
                 else
-                    registers[left] = v1.equals(v2) ? TRUE : FALSE;
+                    registers[left] = v1.Equals(v2) ? TRUE : FALSE;
             }
             else
             {
                 if (!areNumbers)
-                    throw new StoneException("bad operand value");
-                int i1 = ((Integer)v1).intValue();
-                int i2 = ((Integer)v2).intValue();
+                    throw new Exception("bad operand value");
+                int i1 = ((int)v1);
+                int i2 = ((int)v2);
                 int i3;
-                switch (code[pc])
+                switch ((Opcode.Code)code[pc])
                 {
-                    case ADD:
+                    case Opcode.Code.ADD:
                         i3 = i1 + i2;
                         break;
-                    case SUB:
+                    case Opcode.Code.SUB:
                         i3 = i1 - i2;
                         break;
-                    case MUL:
+                    case Opcode.Code.MUL:
                         i3 = i1 * i2;
                         break;
-                    case DIV:
+                    case Opcode.Code.DIV:
                         i3 = i1 / i2;
                         break;
-                    case REM:
+                    case Opcode.Code.REM:
                         i3 = i1 % i2;
                         break;
-                    case EQUAL:
+                    case Opcode.Code.EQUAL:
                         i3 = i1 == i2 ? TRUE : FALSE;
                         break;
-                    case MORE:
+                    case Opcode.Code.MORE:
                         i3 = i1 > i2 ? TRUE : FALSE;
                         break;
-                    case LESS:
+                    case Opcode.Code.LESS:
                         i3 = i1 < i2 ? TRUE : FALSE;
                         break;
                     default:
-                        throw new StoneException("never reach here");
+                        throw new Exception("never reach here");
                 }
                 registers[left] = i3;
             }

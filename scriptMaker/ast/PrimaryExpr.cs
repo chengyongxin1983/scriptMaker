@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using scriptMaker.vm;
 
 namespace scriptMaker.ast
 { 
@@ -32,6 +33,21 @@ namespace scriptMaker.ast
             }
             else
                 return ((ASTree)operand()).eval(env);
+        }
+
+        public override void compile(Code c)
+        {
+            compileSubExpr(c, 0);
+        }
+        public void compileSubExpr(Code c, int nest)
+        {
+            if (hasPostfix(nest))
+            {
+                compileSubExpr(c, nest + 1);
+                postfix(nest).compile(c);
+            }
+            else
+                (operand()).compile(c);
         }
     }
 }

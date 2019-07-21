@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using scriptMaker.vm;
 
 namespace scriptMaker.ast
 {
@@ -33,6 +34,32 @@ namespace scriptMaker.ast
                 else
                     return ((ASTree)b).eval(env);
             }
+        }
+
+        public override void compile(Code c)
+        {
+            condition().compile(c);
+            int pos = c.position();
+            c.add(Opcode.Code.IFZERO);
+            c.add(Opcode.encodeRegister(--c.nextReg));
+            c.add(Opcode.encodeShortOffset(0));
+            int oldReg = c.nextReg;
+            thenBlock().compile(c);
+            int pos2 = c.position();
+            c.add(Opcode.Code.GOTO);
+            c.add(Opcode.encodeShortOffset(0));
+            c.set(Opcode.encodeShortOffset(c.position() - pos), pos + 2);
+            ASTree b = elseBlock();
+            c.nextReg = oldReg;
+            if (b != null)
+                b.compile(c);
+            else
+            {
+                c.add(Opcode.Code.BCONST);
+                c.add((byte)0);
+                c.add(Opcode.encodeRegister(c.nextReg++));
+            }
+            c.set(Opcode.encodeShortOffset(c.position() - pos2), pos2 + 1);
         }
     }
 }

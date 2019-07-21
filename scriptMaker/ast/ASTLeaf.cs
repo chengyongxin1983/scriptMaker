@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using scriptMaker.vm;
 
 namespace scriptMaker.ast
 {
@@ -24,6 +25,11 @@ namespace scriptMaker.ast
             throw new ParseException("cannot eval: " + toString());
         }
 
+
+        public override void compile(Code c)
+        {
+            throw new ParseException("cannot compile: " + toString());
+        }
 
         public override void lookup(Symbols syms)
         {

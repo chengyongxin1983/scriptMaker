@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using scriptMaker.ast;
+using scriptMaker.vm;
 
 namespace scriptMaker.ast
 {
@@ -69,5 +70,37 @@ namespace scriptMaker.ast
             else
                 (env).put(nest, index, value);
         }
+
+        public override void compile(Code c)
+        {
+            if (nest > 0)
+            {
+                c.add(Opcode.Code.GMOVE);
+                c.add(Opcode.encodeShortOffset(index));
+                c.add(Opcode.encodeRegister(c.nextReg++));
+            }
+            else
+            {
+                c.add(Opcode.Code.MOVE);
+                c.add(Opcode.encodeOffset(index));
+                c.add(Opcode.encodeRegister(c.nextReg++));
+            }
+        }
+        public void compileAssign(Code c)
+        {
+            if (nest > 0)
+            {
+                c.add(Opcode.Code.GMOVE);
+                c.add(Opcode.encodeRegister(c.nextReg - 1));
+                c.add(Opcode.encodeShortOffset(index));
+            }
+            else
+            {
+                c.add(Opcode.Code.MOVE);
+                c.add(Opcode.encodeRegister(c.nextReg - 1));
+                c.add(Opcode.encodeOffset(index));
+            }
+        }
     }
+
 }

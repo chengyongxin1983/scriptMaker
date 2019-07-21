@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using scriptMaker.ast;
+using scriptMaker.vm;
 
 namespace scriptMaker.ast
 {
@@ -144,6 +145,51 @@ namespace scriptMaker.ast
             }
             leftast.lookup(syms);
             right().lookup(syms);
+        }
+
+        public override void compile(Code c)
+        {
+            String op = GetOperator();
+            if (op == "=")
+            {
+                ASTree l = left();
+                if (l is Name) {
+                    (right()).compile(c);
+                    ((Name)l).compileAssign(c);
+                }
+                else
+                    throw new Exception("bad assignment");
+            }
+            else
+            {
+                (left()).compile(c);
+                (right()).compile(c);
+                c.add(getOpcode(op));
+                c.add(Opcode.encodeRegister(c.nextReg - 2));
+                c.add(Opcode.encodeRegister(c.nextReg - 1));
+                c.nextReg--;
+            }
+        }
+        protected byte getOpcode(string op)
+        {
+            if (op == "+")
+                return (byte)Opcode.Code.ADD;
+            else if (op == "-")
+                return (byte)Opcode.Code.SUB;
+            else if (op == ("*"))
+                return (byte)Opcode.Code.MUL;
+            else if (op == ("/"))
+                return (byte)Opcode.Code.DIV;
+            else if (op == ("%"))
+                return (byte)Opcode.Code.REM;
+            else if (op == ("=="))
+                return (byte)Opcode.Code.EQUAL;
+            else if (op == (">"))
+                return (byte)Opcode.Code.MORE;
+            else if (op == ("<"))
+                return (byte)Opcode.Code.LESS;
+            else
+                throw new Exception("bad operator");
         }
 
     }
