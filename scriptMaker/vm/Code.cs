@@ -23,6 +23,10 @@ namespace scriptMaker.vm
         }
         public void add(byte b)
         {
+            if (codeSize == 11)
+            {
+                codeSize = 11;
+            }
             svm.getCode()[codeSize++] = b;
         }
         public void add(Opcode.Code b)

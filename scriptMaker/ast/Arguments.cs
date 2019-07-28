@@ -50,7 +50,25 @@ namespace scriptMaker.ast
                 }
                 return func.eval(args);
             }
-            else
+            else if (value is Function)
+            {
+                Function func = (Function)value;
+                ParameterList parameters = func.parameters;
+                if (size() != parameters.size())
+                    throw new ParseException("bad number of arguments");
+                int num = 0;
+
+                for (int i = 0; i < numChildren(); ++i)
+                {
+                    ASTree a = child(i);
+
+                    parameters.eval(callerEnv, num++, a.eval(callerEnv));
+                }
+
+                Environment newEnv = func.makeEnv();
+                return func.body.eval(newEnv);
+            }
+            else 
             {
                 throw new ParseException("bad function");
             }

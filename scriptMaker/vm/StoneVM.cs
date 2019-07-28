@@ -70,8 +70,11 @@ namespace scriptMaker.vm
                     pc += 6;
                     break;
                 case Opcode.Code.BCONST:
-                    registers[Opcode.decodeRegister(code[pc + 2])] = (int)code[pc + 1];
-                    pc += 3;
+                    {
+                        int regIndx = Opcode.decodeRegister(code[pc + 2]);
+                        registers[regIndx] = (int)code[pc + 1];
+                        pc += 3;
+                    }
                     break;
                 case Opcode.Code.SCONST:
                     registers[Opcode.decodeRegister(code[pc + 3])]
@@ -87,8 +90,8 @@ namespace scriptMaker.vm
                 case Opcode.Code.IFZERO:
                     {
                         Object value = registers[Opcode.decodeRegister(code[pc + 1])];
-                        if ((value is System.Int32 || value is System.UInt32)
-                         && ((UInt32)value) == 0)
+                        if ((value is System.Int32)
+                         && ((int)value) == 0)
                         {
                             pc += readShort(code, pc + 2);
                         }

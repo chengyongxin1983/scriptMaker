@@ -1,15 +1,4 @@
-class Position
-{
-	x = y = 0;
-	def move(nx, ny)
-	{
-		x = nx; y = ny;
-	}
-};
 
-a = ["211", "311", "411"];
-a[2] = ["l","x","b"];
-print(a[2][2]);
 def fib(n)
 {
 	if n < 2
@@ -23,8 +12,6 @@ def fib(n)
 	}
 };
 
-p = Position.new;
-p.move(5, 6);
-p.x = 7;
-print(p.x);
+a = fib(6);
+print(a)	;	
 

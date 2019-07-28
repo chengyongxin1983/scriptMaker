@@ -1,38 +1,38 @@
 ﻿<Properties StartupConfiguration="{404833B2-BE8A-4FAE-BBC6-28EDA8AF005B}|Default">
   <MonoDevelop.Ide.ItemProperties.scriptMaker PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="scriptMaker/ast/eval/ArrayEnv.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="scriptMaker/vm/StoneVM.cs">
     <Files>
       <File FileName="scriptMaker/ParseException.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/ClassInfo.cs" Line="56" Column="1" />
+      <File FileName="scriptMaker/ast/ClassInfo.cs" Line="90" Column="24" />
       <File FileName="scriptMaker/ast/eval/Symbols.cs" Line="85" Column="27" />
-      <File FileName="scriptMaker/ast/eval/Function.cs" Line="40" Column="18" />
-      <File FileName="scriptMaker/ast/BinaryExpr.cs" Line="192" Column="51" />
+      <File FileName="scriptMaker/ast/eval/Function.cs" Line="26" Column="13" />
+      <File FileName="scriptMaker/ast/BinaryExpr.cs" Line="163" Column="17" />
       <File FileName="scriptMaker/ast/Fun.cs" Line="29" Column="1" />
       <File FileName="scriptMaker/ast/StoneObject.cs" Line="39" Column="1" />
       <File FileName="scriptMaker/ast/DefStmnt.cs" Line="65" Column="39" />
       <File FileName="scriptMaker/ast/BlockStmnt.cs" Line="37" Column="17" />
       <File FileName="scriptMaker/ast/ClassStmnt.cs" Line="58" Column="31" />
       <File FileName="scriptMaker/ast/MemberSymbols.cs" Line="4" Column="38" />
-      <File FileName="scriptMaker/ast/Dot.cs" Line="26" Column="37" />
+      <File FileName="scriptMaker/ast/Dot.cs" Line="29" Column="48" />
       <File FileName="scriptMaker/ast/PrimaryExpr.cs" Line="51" Column="10" />
-      <File FileName="scriptMaker/ast/Arguments.cs" Line="37" Column="40" />
+      <File FileName="scriptMaker/ast/Arguments.cs" Line="36" Column="22" />
       <File FileName="scriptMaker/ast/ASTList.cs" Line="11" Column="32" />
-      <File FileName="scriptMaker/ast/Name.cs" Line="105" Column="5" />
+      <File FileName="scriptMaker/ast/Name.cs" Line="105" Column="1" />
       <File FileName="scriptMaker/ast/ASTLeaf.cs" Line="26" Column="10" />
       <File FileName="scriptMaker/Program.cs" Line="78" Column="47" />
       <File FileName="scriptMaker/ast/ClassBody.cs" Line="21" Column="47" />
       <File FileName="scriptMaker/lexer/IdToken.cs" Line="20" Column="1" />
       <File FileName="scriptMaker/ast/SymbolThis.cs" Line="21" Column="1" />
       <File FileName="scriptMaker/vm/Opcode.cs" Line="4" Column="18" />
-      <File FileName="scriptMaker/vm/StoneVM.cs" Line="27" Column="46" />
+      <File FileName="scriptMaker/vm/StoneVM.cs" Line="207" Column="38" />
       <File FileName="scriptMaker/vm/HeapMemory.cs" Line="6" Column="6" />
       <File FileName="scriptMaker/lexer/NumberToken.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/vm/VmFunction.cs" Line="6" Column="18" />
+      <File FileName="scriptMaker/vm/VmFunction.cs" Line="5" Column="2" />
       <File FileName="scriptMaker/vm/StoneVMEnv.cs" Line="20" Column="2" />
       <File FileName="scriptMaker/vm/Code.cs" Line="21" Column="49" />
       <File FileName="scriptMaker/vm/VmEvaluator.cs" Line="1" Column="1" />
       <File FileName="scriptMaker/ast/eval/ResizableArrayEnv.cs" Line="1" Column="1" />
-      <File FileName="scriptMaker/ast/eval/Environment.cs" Line="17" Column="10" />
+      <File FileName="scriptMaker/ast/eval/Environment.cs" Line="5" Column="18" />
       <File FileName="scriptMaker/ast/ASTree.cs" Line="11" Column="27" />
       <File FileName="scriptMaker/ast/ParameterList.cs" Line="29" Column="16" />
       <File FileName="scriptMaker/ast/NumberLiteral.cs" Line="35" Column="1" />
@@ -41,7 +41,7 @@
       <File FileName="scriptMaker/ast/IfStmnt.cs" Line="65" Column="2" />
       <File FileName="scriptMaker/ast/WhileStmnt.cs" Line="52" Column="26" />
       <File FileName="scriptMaker/ast/eval/NestedEnv.cs" Line="88" Column="7" />
-      <File FileName="scriptMaker/ast/eval/ArrayEnv.cs" Line="12" Column="24" />
+      <File FileName="scriptMaker/ast/eval/ArrayEnv.cs" Line="83" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -49,12 +49,12 @@
           <Node name="scriptMaker" expanded="True">
             <Node name="scriptMaker" expanded="True">
               <Node name="ast" expanded="True">
-                <Node name="eval" expanded="True">
-                  <Node name="ArrayEnv.cs" selected="True" />
-                </Node>
+                <Node name="eval" expanded="True" />
               </Node>
               <Node name="lexer" expanded="True" />
-              <Node name="vm" expanded="True" />
+              <Node name="vm" expanded="True">
+                <Node name="StoneVM.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>

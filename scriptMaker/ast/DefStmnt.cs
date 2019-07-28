@@ -28,7 +28,9 @@ namespace scriptMaker.ast
         {
             Code code = env.code();
             int entry = code.position();
+            compile(code);
             env.putNew(name(), new VmFunction(parameters(), body(), env, entry));
+
             //((Environment)env).put(0, index, new Function(parameters(), body(), env, size));
             return name();
         }
@@ -55,10 +57,10 @@ namespace scriptMaker.ast
             c.frameSize = size + StoneVM.SAVE_AREA_SIZE; // size is argument number
 
             c.add(Opcode.Code.SAVE);
-            c.add(Opcode.encodeShortOffset(size));
+            c.add(Opcode.encodeOffset(size));
             body().compile(c);
             c.add(Opcode.Code.MOVE);
-            c.add(Opcode.decodeRegister((byte)(c.nextReg - 1)));
+            c.add(Opcode.encodeRegister((byte)(c.nextReg - 1)));
             c.add(Opcode.encodeOffset(0));
             c.add(Opcode.Code.RESTORE);
             c.add(Opcode.encodeOffset(size));

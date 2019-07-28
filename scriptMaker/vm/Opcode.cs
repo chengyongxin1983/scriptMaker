@@ -38,7 +38,7 @@ namespace scriptMaker.vm
                 return (byte)-(reg + 1);
         }
 
-        public static int decodeRegister(byte operand) { return -1 - operand; }
+        public static int decodeRegister(byte operand) { return -1 + (256 - operand); }
 
         public static byte encodeOffset(int offset)
         {
@@ -56,7 +56,7 @@ namespace scriptMaker.vm
                 return (short)offset;
         }
         public static int decodeOffset(byte operand) { return operand; }
-        public static bool isRegister(byte operand) { return operand < 0; }
-        public static bool isOffset(byte operand) { return operand >= 0; }
+        public static bool isRegister(byte operand) { return operand > 127 ; }
+        public static bool isOffset(byte operand) { return operand <= 127; }
     }
 }

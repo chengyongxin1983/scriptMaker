@@ -42,12 +42,14 @@ namespace scriptMaker.ast
         static Assembly ass;
         MethodInfo method;
 
+        Type[] _types;
         public NativeFunction(string nativeClassName, string nativeMethodName, Type[] types)
         {
             if (ass == null)
             {
                 ass = Assembly.Load("mscorlib");
             }
+            _types = types;
 
             Type type = ass.GetType(nativeClassName);
             method = type.GetMethod(nativeMethodName, types);
@@ -59,7 +61,29 @@ namespace scriptMaker.ast
             object result = null;
             if (method != null)
             {
-                result = method.Invoke(null, args);
+                List<object> newArgs = new List<object>();
+                for (int i = 0; i < args.Length; ++i)
+                {
+                    newArgs.Add(ConvertToArgType(args[i], i));
+                }
+                result = method.Invoke(null, newArgs.ToArray());
+            }
+
+            return result;
+        }
+
+        object ConvertToArgType(object arg, int index)
+        {
+            object result = null;
+
+            Type tarType = _types[index];
+            if (tarType == typeof(string))
+            {
+                result = arg.ToString();
+            }
+            else if (tarType == typeof(int))
+            {
+                result = Convert.ToInt32(arg);
             }
 
             return result;
